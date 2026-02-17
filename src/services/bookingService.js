@@ -11,7 +11,7 @@ const bookingService = {
         return await api.post('/bookings/', data);
     },
     updateBooking: async (id, data) => {
-        return await api.put(`/bookings/${id}/`, data);
+        return await api.patch(`/bookings/${id}/`, data);
     },
     deleteBooking: async (id) => {
         return await api.delete(`/bookings/${id}/`);

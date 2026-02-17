@@ -12,7 +12,7 @@ const userService = {
         return await api.post('/users/', data);
     },
     updateUser: async (id, data) => {
-        return await api.put(`/users/${id}/`, data);
+        return await api.patch(`/users/${id}/`, data);
     },
     deleteUser: async (id) => {
         return await api.delete(`/users/${id}/`);

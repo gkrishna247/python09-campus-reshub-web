@@ -11,7 +11,7 @@ const resourceService = {
         return await api.post('/resources/', data);
     },
     updateResource: async (id, data) => {
-        return await api.put(`/resources/${id}/`, data);
+        return await api.patch(`/resources/${id}/`, data);
     },
     deleteResource: async (id) => {
         return await api.delete(`/resources/${id}/`);
