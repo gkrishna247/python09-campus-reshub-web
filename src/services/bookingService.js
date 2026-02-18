@@ -1,21 +1,36 @@
-import api from './api';
+import api from './api'
 
-const bookingService = {
-    getBookings: async () => {
-        return await api.get('/bookings/');
-    },
-    getBookingById: async (id) => {
-        return await api.get(`/bookings/${id}/`);
-    },
-    createBooking: async (data) => {
-        return await api.post('/bookings/', data);
-    },
-    updateBooking: async (id, data) => {
-        return await api.patch(`/bookings/${id}/`, data);
-    },
-    deleteBooking: async (id) => {
-        return await api.delete(`/bookings/${id}/`);
-    },
-};
+export async function getMyBookings(params) {
+  const response = await api.get('/bookings/', { params })
+  return response.data
+}
 
-export default bookingService;
+export async function getAllBookings(params) {
+  const response = await api.get('/bookings/all/', { params })
+  return response.data
+}
+
+export async function getPendingBookings(params) {
+  const response = await api.get('/bookings/pending/', { params })
+  return response.data
+}
+
+export async function createBooking(data) {
+  const response = await api.post('/bookings/', data)
+  return response.data
+}
+
+export async function approveBooking(id) {
+  const response = await api.post(`/bookings/${id}/approve/`)
+  return response.data
+}
+
+export async function rejectBooking(id, rejection_reason) {
+  const response = await api.post(`/bookings/${id}/reject/`, { rejection_reason })
+  return response.data
+}
+
+export async function cancelBooking(id, cancellation_reason) {
+  const response = await api.post(`/bookings/${id}/cancel/`, { cancellation_reason })
+  return response.data
+}

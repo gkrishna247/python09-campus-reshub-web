@@ -1,50 +1,16 @@
-# Campus Resource Management System (Frontend)
+# React + Vite
 
-A React-based frontend for the Campus Resource Management System. Interfaces with a Django REST Framework backend to manage Users, Resources, and Bookings.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Tech Stack
+Currently, two official plugins are available:
 
-- **React** (Vite)
-- **React Router** (Routing)
-- **Axios** (API requests)
-- **React Toastify** (Notifications)
-- **CSS** (Custom styling)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Setup Instructions
+## React Compiler
 
-1.  **Clone the repository** (if you haven't already).
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-3.  **Environment Setup**:
-    Ensure `.env` exists with the correct API URL:
-    ```
-    VITE_API_BASE_URL=http://localhost:8000/api
-    ```
-4.  **Run Development Server**:
-    ```bash
-    npm run dev
-    ```
-    The app will be available at `http://localhost:5173`.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Pages & Features
+## Expanding the ESLint configuration
 
-- **Dashboard**: Overview of total Users, Resources, and Bookings.
-- **Users**:
-    - List all users with status filtering.
-    - Add new users (Student/Staff).
-    - Edit and Delete users.
-- **Resources**:
-    - List all resources (Labs, Classrooms, Event Halls).
-    - Add/Edit/Delete resources.
-- **Bookings**:
-    - List all bookings with status.
-    - Create new bookings (handles double-booking conflicts).
-    - Approve/Reject pending bookings.
-
-## Error Handling
-
-- **Toast Notifications**: Success and Error messages.
-- **Form Validation**: Inline validation errors from backend.
-- **Network Errors**: Alerts if backend is unreachable.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
