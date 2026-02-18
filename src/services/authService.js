@@ -2,12 +2,12 @@ import api from "./api";
 
 export const authService = {
     login: async (email, password) => {
-        const response = await api.post<ApiResponse<AuthResponse>>("/auth/login/", { email, password });
+        const response = await api.post("/auth/login/", { email, password });
         return response.data;
     },
 
     register: async (data) => {
-        const response = await api.post<ApiResponse<any>>("/auth/register/", data);
+        const response = await api.post("/auth/register/", data);
         return response.data;
     },
 
@@ -20,12 +20,12 @@ export const authService = {
     },
 
     refreshToken: async (refresh) => {
-        const response = await api.post<ApiResponse<{ access: string }>>("/auth/token/refresh/", { refresh });
+        const response = await api.post("/auth/token/refresh/", { refresh });
         return response.data;
     },
 
     getApprovalStatus: async () => {
-        const response = await api.get<ApiResponse<any>>("/auth/approval-status/");
+        const response = await api.get("/auth/approval-status/");
         return response.data;
     },
 };

@@ -22,7 +22,7 @@ export const UserManagementPage = () => {
 
     // Edit Dialog
     const [editUser, setEditUser] = useState(null);
-    const [editData, setEditData] = useState<Partial<User>>({});
+    const [editData, setEditData] = useState({});
 
     // Delete Dialog
     const [deleteId, setDeleteId] = useState(null);
@@ -49,7 +49,7 @@ export const UserManagementPage = () => {
 
     const handleEditClick = (user) => {
         setEditUser(user);
-        setEditData({ role: user.role, account_status);
+        setEditData({ role: user.role, account_status: user.account_status });
     };
 
     const handleEditSave = async () => {
@@ -140,13 +140,13 @@ export const UserManagementPage = () => {
             <Dialog open={!!editUser} onClose={() => setEditUser(null)} maxWidth="xs" fullWidth>
                 <DialogTitle>Edit User</DialogTitle>
                 <DialogContent>
-                    <Box sx={{ pt: 1, display, flexDirection, gap: 2 }}>
+                    <Box sx={{ pt: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <FormControl fullWidth>
                             <InputLabel>Role</InputLabel>
                             <Select
                                 value={editData.role || ""}
                                 label="Role"
-                                onChange={(e) => setEditData({ ...editData, role)}
+                                onChange={(e) => setEditData({ ...editData, role: e.target.value })}
                             >
                                 {Object.values(ROLES).map(r => <MenuItem key={r} value={r}>{r}</MenuItem>)}
                             </Select>
@@ -156,7 +156,7 @@ export const UserManagementPage = () => {
                             <Select
                                 value={editData.account_status || ""}
                                 label="Status"
-                                onChange={(e) => setEditData({ ...editData, account_status)}
+                                onChange={(e) => setEditData({ ...editData, account_status: e.target.value })}
                             >
                                 {Object.values(ACCOUNT_STATUSES).map(s => <MenuItem key={s} value={s}>{s}</MenuItem>)}
                             </Select>

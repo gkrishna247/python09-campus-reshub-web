@@ -10,7 +10,7 @@ import { ROLES } from "../../utils/constants";
 import dayjs from "dayjs";
 
 // Helper for rejection dialog
-const RejectionDialog = ({ open, onClose, onConfirm }: { open: boolean, onClose: () => void, onConfirm: (reason) => void }) => {
+const RejectionDialog = ({ open, onClose, onConfirm }) => {
     const [reason, setReason] = useState("");
     return (
         <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>

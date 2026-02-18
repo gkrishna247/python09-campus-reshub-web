@@ -22,8 +22,8 @@ export const ResourceCard = ({ resource }) => {
     };
 
     return (
-        <Card sx={{ height: '100%', display, flexDirection: 'column' }}>
-            <CardActionArea onClick={() => navigate(`/resources/${resource.id}`)} sx={{ flexGrow: 1, display, flexDirection, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CardActionArea onClick={() => navigate(`/resources/${resource.id}`)} sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                 <CardContent sx={{ width: '100%' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
                         <Typography variant="h6" component="div" fontWeight="bold">
@@ -37,19 +37,19 @@ export const ResourceCard = ({ resource }) => {
                         />
                     </Box>
 
-                    <Box sx={{ display: 'flex', alignItems, mb, color: 'text.secondary' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb, color: 'text.secondary' }}>
                         <PeopleIcon fontSize="small" sx={{ mr: 0.5 }} />
                         <Typography variant="body2">Capacity: {resource.capacity}</Typography>
                     </Box>
 
                     {resource.location && (
-                        <Box sx={{ display: 'flex', alignItems, mb, color: 'text.secondary' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb, color: 'text.secondary' }}>
                             <LocationOnIcon fontSize="small" sx={{ mr: 0.5 }} />
                             <Typography variant="body2">{resource.location}</Typography>
                         </Box>
                     )}
 
-                    <Box sx={{ mt: 1, display, gap, flexWrap: 'wrap' }}>
+                    <Box sx={{ mt: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                         <Chip
                             label={resource.resource_status}
                             color={resource.resource_status === 'AVAILABLE' ? "success" : "error"}

@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+console.log("Main script executing");
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'

@@ -18,9 +18,9 @@ export const RequestResourcePage = () => {
         reason: ""
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name as string]: value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
@@ -51,7 +51,7 @@ export const RequestResourcePage = () => {
                 Back to My Resources
             </Button>
 
-            <Paper sx={{ p: 4, maxWidth, mx: "auto" }}>
+            <Paper sx={{ p: 4, maxWidth: 800, mx: "auto" }}>
                 <Typography variant="h5" fontWeight="bold" gutterBottom>
                     Request New Resource
                 </Typography>
@@ -59,7 +59,7 @@ export const RequestResourcePage = () => {
                     Submit a request to add a new resource to the system. An administrator will review your request.
                 </Typography>
 
-                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, display, flexDirection, gap: 3 }}>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
                     <TextField
                         label="Resource Name"
                         name="name"
@@ -120,7 +120,7 @@ export const RequestResourcePage = () => {
                         onChange={handleChange}
                     />
 
-                    <Box sx={{ display: 'flex', gap, justifyContent: 'flex-end' }}>
+                    <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
                         <Button onClick={() => navigate("/staff/resources")}>Cancel</Button>
                         <Button type="submit" variant="contained" disabled={loading}>
                             {loading ? "Submitting..." : "Submit Request"}

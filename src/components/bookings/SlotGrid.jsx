@@ -43,7 +43,7 @@ export const SlotGrid = ({ resourceId, onSlotClick }) => {
 
     return (
         <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems, justifyContent: 'space-between', mb: 3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
                 <IconButton onClick={handlePrevDay} disabled={currentDate.isBefore(dayjs(), 'day')}>
                     <ArrowBackIosIcon />
                 </IconButton>
@@ -64,7 +64,7 @@ export const SlotGrid = ({ resourceId, onSlotClick }) => {
             ) : (
                 <Grid container spacing={2}>
                     {availability.map((slot, index) => (
-                        <Grid size={{ xs: 6, sm, md, lg: 2 }} key={index}>
+                        <Grid size={{ xs: 6, sm: 6, md: 4, lg: 2 }} key={index}>
                             <Button
                                 variant={slot.status === "AVAILABLE" ? "outlined" : "contained"}
                                 color={slot.status === "AVAILABLE" ? "primary" : "inherit"}

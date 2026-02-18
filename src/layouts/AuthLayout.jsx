@@ -25,7 +25,7 @@ export const AuthLayout = () => {
                         width: "100%",
                     }}
                 >
-                    <Box sx={{ display: "flex", alignItems, mb: 3 }}>
+                    <Box sx={{ display: "flex", alignItems: 'center', mb: 3 }}>
                         <SchoolIcon color="primary" sx={{ fontSize: 40, mr: 1 }} />
                         <Typography variant="h4" component="h1" fontWeight="bold" color="primary">
                             Campus ResHub

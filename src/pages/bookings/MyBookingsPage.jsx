@@ -84,7 +84,7 @@ export const MyBookingsPage = () => {
             ) : (
                 <Grid container spacing={3}>
                     {displayedBookings.map((booking) => (
-                        <Grid size={{ xs: 12, sm, md: 4 }} key={booking.id}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={booking.id}>
                             <BookingCard booking={booking} onCancel={handleCancelClick} />
                         </Grid>
                     ))}

@@ -1,7 +1,6 @@
 import React, { createContext, useState, useCallback } from "react";
 import { Snackbar, Alert } from "@mui/material";
 
-
 export const SnackbarContext = createContext(undefined);
 
 export const SnackbarProvider = ({ children }) => {
@@ -9,13 +8,13 @@ export const SnackbarProvider = ({ children }) => {
     const [message, setMessage] = useState("");
     const [severity, setSeverity] = useState("info");
 
-    const showSnackbar = useCallback((msg, sev: AlertColor = "info") => {
+    const showSnackbar = useCallback((msg, sev = "info") => {
         setMessage(msg);
         setSeverity(sev);
         setOpen(true);
     }, []);
 
-    const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    const handleClose = (_event, reason) => {
         if (reason === "clickaway") {
             return;
         }

@@ -41,9 +41,9 @@ export const RegisterPage = () => {
     const { register } = useAuth();
     const navigate = useNavigate();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name as string]: value }));
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const isFormValid =

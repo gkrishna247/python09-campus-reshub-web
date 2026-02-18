@@ -17,7 +17,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { ROLES } from "../../utils/constants";
 
 export const ResourceDetailPage = () => {
-    const { id } = useParams<{ id: string }>();
+    const { id } = useParams();
     const navigate = useNavigate();
     const { user } = useAuth();
 
@@ -78,7 +78,7 @@ export const ResourceDetailPage = () => {
                             )}
                         </Box>
 
-                        <Box sx={{ mb: 2, display, gap, flexWrap: 'wrap' }}>
+                        <Box sx={{ mb: 2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                             <Chip label={resource.type.replace('_', ' ')} color="primary" variant="outlined" />
                             <Chip
                                 label={resource.resource_status}
@@ -92,15 +92,15 @@ export const ResourceDetailPage = () => {
 
                         <Divider sx={{ my: 2 }} />
 
-                        <Box sx={{ display: 'flex', alignItems, mb, color: 'text.secondary' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb, color: 'text.secondary' }}>
                             <PeopleIcon sx={{ mr: 1 }} />
                             <Typography>Capacity: {resource.capacity} people</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', alignItems, mb, color: 'text.secondary' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb, color: 'text.secondary' }}>
                             <LocationOnIcon sx={{ mr: 1 }} />
                             <Typography>Location: {resource.location || "N/A"}</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', alignItems, mb, color: 'text.secondary' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb, color: 'text.secondary' }}>
                             <AccessTimeIcon sx={{ mr: 1 }} />
                             <Typography>Max Duration: {resource.max_booking_duration_hours || 2} hours</Typography>
                         </Box>

@@ -24,7 +24,7 @@ export const Sidebar = ({ open, onClose, width }) => {
 
     if (!user) return null;
 
-    const menuItems: { label: string; icon: React.ReactElement; path: string }[] = [];
+    const menuItems = [];
 
     // STUDENT
     if (user.role === ROLES.STUDENT) {
@@ -121,8 +121,10 @@ export const Sidebar = ({ open, onClose, width }) => {
                 onClose={onClose}
                 ModalProps={{ keepMounted: true }}
                 sx={{
-                    display: { xs: "block", lg,
-                    "& .MuiDrawer-paper": { boxSizing: "border-box", width,
+                    display: { xs: "block", lg: "none" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box", width: width,
+                    },
                 }}
             >
                 {drawerContent}
@@ -132,8 +134,10 @@ export const Sidebar = ({ open, onClose, width }) => {
             <Drawer
                 variant="permanent"
                 sx={{
-                    display: { xs: "none", lg,
-                    "& .MuiDrawer-paper": { boxSizing: "border-box", width,
+                    display: { xs: "none", lg: "block" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box", width: width,
+                    },
                 }}
                 open
             >

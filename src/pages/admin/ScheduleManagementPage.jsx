@@ -77,7 +77,7 @@ export const ScheduleManagementPage = () => {
                             <Grid container spacing={2}>
                                 {schedule.map((day, index) => (
                                     <Grid size={{ xs: 12 }} key={day.day_of_week}>
-                                        <Box sx={{ display: 'flex', alignItems, gap, flexWrap: 'wrap' }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                                             <Typography sx={{ width: 100, fontWeight: 'bold' }}>{day.day_of_week}</Typography>
 
                                             <FormControlLabel
@@ -112,7 +112,7 @@ export const ScheduleManagementPage = () => {
                                     </Grid>
                                 ))}
                             </Grid>
-                            <Box sx={{ mt: 2, display, justifyContent: 'flex-end' }}>
+                            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
                                 <Button variant="contained" onClick={handleSave}>Save Schedule</Button>
                             </Box>
                         </LocalizationProvider>

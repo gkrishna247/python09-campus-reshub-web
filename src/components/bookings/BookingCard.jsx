@@ -24,7 +24,7 @@ export const BookingCard = ({ booking, onCancel }) => {
     };
 
     return (
-        <Card sx={{ height: '100%', display, flexDirection: 'column' }}>
+        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flexGrow: 1 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
                     <Typography variant="h6" fontWeight="bold">
@@ -42,20 +42,20 @@ export const BookingCard = ({ booking, onCancel }) => {
                     {booking.title}
                 </Typography>
 
-                <Box sx={{ mt: 2, display, flexDirection, gap: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems, color: 'text.secondary' }}>
+                <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', color: 'text.secondary' }}>
                         <EventIcon fontSize="small" sx={{ mr: 1 }} />
                         <Typography variant="body2">
                             {dayjs(booking.start_time).format("MMM D, YYYY")}
                         </Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', alignItems, color: 'text.secondary' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', color: 'text.secondary' }}>
                         <AccessTimeIcon fontSize="small" sx={{ mr: 1 }} />
                         <Typography variant="body2">
                             {dayjs(booking.start_time).format("h:mm A")} - {dayjs(booking.end_time).format("h:mm A")}
                         </Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', alignItems, color: 'text.secondary' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', color: 'text.secondary' }}>
                         <PlaceIcon fontSize="small" sx={{ mr: 1 }} />
                         <Typography variant="body2">
                             {booking.resource.location || booking.resource.name}

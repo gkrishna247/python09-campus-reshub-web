@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
                         created_at: "",
                         updated_at: "",
                         last_login: null
-                    } as User);
+                    });
                     setAccessToken(storedAccess);
                     setRefreshTokenState(storedRefresh);
                 } else if (storedRefresh) {
@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
             created_at: "",
             updated_at: "",
             last_login: null
-        } as User);
+        });
 
         return {
             ...userMinimal,
@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }) => {
             created_at: "",
             updated_at: "",
             last_login: null
-        } as User;
+        };
     };
 
     const register = async (data) => {

@@ -126,10 +126,10 @@ export const NotificationBell = () => {
                     horizontal: "right",
                 }}
                 PaperProps={{
-                    sx: { width: 360, maxHeight, display, flexDirection: 'column' }
+                    sx: { width: 360, maxHeight: 400, display: 'flex', flexDirection: 'column' }
                 }}
             >
-                <Box sx={{ p: 2, display, justifyContent: "space-between", alignItems, borderBottom, borderColor: "divider" }}>
+                <Box sx={{ p: 2, display: 'flex', justifyContent: "space-between", alignItems: 'center', borderBottom: 1, borderColor: "divider" }}>
                     <Typography variant="subtitle1" fontWeight="bold">
                         Notifications
                     </Typography>

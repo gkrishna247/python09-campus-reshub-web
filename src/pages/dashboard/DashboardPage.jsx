@@ -36,9 +36,9 @@ export const DashboardPage = () => {
                     setStats({
                         upcomingBookings: bookingsRes.data.count,
                         availableResources: resourcesRes.data.count,
-                        unreadNotifications: (notificationsRes.data[]).filter(n => !n.is_read).length
+                        unreadNotifications: (notificationsRes.data).filter(n => !n.is_read).length
                     });
-                    setNotifications(notificationsRes.data[]);
+                    setNotifications(notificationsRes.data);
                 }
 
                 if (user?.role === ROLES.STAFF) {
@@ -78,7 +78,7 @@ export const DashboardPage = () => {
 
     return (
         <Box>
-            <Paper elevation={0} sx={{ p: 3, mb, bgcolor, color, borderRadius: 2 }}>
+            <Paper elevation={0} sx={{ p: 3, mb: 3, bgcolor: 'background.default', borderRadius: 2 }}>
                 <Typography variant="h4" fontWeight="bold">
                     Welcome back, {user.name}!
                 </Typography>
@@ -120,7 +120,7 @@ export const DashboardPage = () => {
                     <Grid size={{ xs: 12 }}>
                         <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>Recent Notifications</Typography>
                         {notifications.slice(0, 5).map(n => (
-                            <Paper key={n.id} sx={{ p: 2, mb, borderLeft, borderColor: n.is_read ? 'transparent' : 'primary.main' }}>
+                            <Paper key={n.id} sx={{ p: 2, mb: 2, borderLeft: 4, borderColor: n.is_read ? 'transparent' : 'primary.main' }}>
                                 <Typography variant="subtitle2" fontWeight="bold">{n.title}</Typography>
                                 <Typography variant="body2" color="text.secondary">{n.body}</Typography>
                             </Paper>
@@ -167,10 +167,10 @@ export const DashboardPage = () => {
             {user.role === ROLES.ADMIN && stats && (
                 <Grid container spacing={3}>
                     {/* Admin condensed statistics */}
-                    <Grid size={{ xs: 12, sm, md: 3 }}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <Card>
                             <CardContent>
-                                <Box sx={{ display: 'flex', alignItems, mb: 1 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                                     <PeopleIcon color="primary" sx={{ mr: 1 }} />
                                     <Typography variant="h6">Users</Typography>
                                 </Box>
@@ -178,10 +178,10 @@ export const DashboardPage = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid size={{ xs: 12, sm, md: 3 }}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <Card>
                             <CardContent>
-                                <Box sx={{ display: 'flex', alignItems, mb: 1 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                                     <MeetingRoomIcon color="secondary" sx={{ mr: 1 }} />
                                     <Typography variant="h6">Resources</Typography>
                                 </Box>
@@ -189,10 +189,10 @@ export const DashboardPage = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid size={{ xs: 12, sm, md: 3 }}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <Card>
                             <CardContent>
-                                <Box sx={{ display: 'flex', alignItems, mb: 1 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                                     <EventNoteIcon color="action" sx={{ mr: 1 }} />
                                     <Typography variant="h6">Bookings</Typography>
                                 </Box>
@@ -201,10 +201,10 @@ export const DashboardPage = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid size={{ xs: 12, sm, md: 3 }}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <Card>
                             <CardContent>
-                                <Box sx={{ display: 'flex', alignItems, mb: 1 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                                     <PendingActionsIcon color="warning" sx={{ mr: 1 }} />
                                     <Typography variant="h6">Pending</Typography>
                                 </Box>

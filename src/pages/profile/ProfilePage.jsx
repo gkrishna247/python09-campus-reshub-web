@@ -17,12 +17,12 @@ export const ProfilePage = () => {
     const { showSnackbar } = useSnackbar();
 
     // Profile Form State
-    const [profileData, setProfileData] = useState({ name: "", phone);
+    const [profileData, setProfileData] = useState({ name: "", phone: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [loadingProfile, setLoadingProfile] = useState(false);
 
     // Password Form State
-    const [passData, setPassData] = useState({ current: "", new, confirm);
+    const [passData, setPassData] = useState({ current: "", new: "", confirm: "" });
     const [loadingPass, setLoadingPass] = useState(false);
 
     // Role Request State
@@ -32,7 +32,7 @@ export const ProfilePage = () => {
 
     useEffect(() => {
         if (user) {
-            setProfileData({ name: user.name, phone);
+            setProfileData({ name: user.name, phone: user.phone || "" });
             if (user.approval_status === APPROVAL_STATUSES.APPROVED && user.role !== ROLES.ADMIN) {
                 fetchRoleRequests();
             }
@@ -53,7 +53,7 @@ export const ProfilePage = () => {
     const handleProfileUpdate = async () => {
         setLoadingProfile(true);
         try {
-            await userService.updateProfile({ name: profileData.name, phone);
+            await userService.updateProfile({ name: profileData.name, phone: profileData.phone });
             await refreshAccessToken(); // Refresh to update user context
             setIsEditing(false);
             showSnackbar("Profile updated successfully.", "success");
@@ -72,7 +72,7 @@ export const ProfilePage = () => {
                 new_password: passData.new,
                 confirm_password: passData.confirm
             });
-            setPassData({ current: "", new, confirm);
+            setPassData({ current: "", new: "", confirm: "" });
             showSnackbar("Password changed successfully.", "success");
         } catch (error) {
             showSnackbar(error.message || "Failed to change password.", "error");
@@ -108,7 +108,7 @@ export const ProfilePage = () => {
 
             {/* Section 1: Profile Information */}
             <Paper sx={{ p: 3, mb: 3 }}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems, mb: 2 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: 'center', mb: 2 }}>
                     <Typography variant="h6">Profile Information</Typography>
                     {isApproved && !isEditing && (
                         <Button variant="outlined" onClick={() => setIsEditing(true)}>Edit</Button>
@@ -120,7 +120,7 @@ export const ProfilePage = () => {
                             fullWidth
                             label="Name"
                             value={isEditing ? profileData.name : user.name}
-                            onChange={(e) => setProfileData({ ...profileData, name)}
+                            onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
                             InputProps={{ readOnly: !isEditing }}
                             variant={isEditing ? "outlined" : "filled"}
                         />
@@ -142,21 +142,21 @@ export const ProfilePage = () => {
                             fullWidth
                             label="Phone"
                             value={isEditing ? profileData.phone : (user.phone || "")}
-                            onChange={(e) => setProfileData({ ...profileData, phone)}
+                            onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
                             InputProps={{ readOnly: !isEditing }}
                             variant={isEditing ? "outlined" : "filled"}
                         />
                     </Grid>
-                    <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', gap, alignItems: 'center' }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                         <Chip label={`Role: ${user.role}`} color="primary" variant="outlined" />
                         <Chip label={`Status: ${user.account_status}`} color={user.account_status === 'ACTIVE' ? "success" : "error"} variant="outlined" />
                         <Chip label={`Approval: ${user.approval_status}`} color={user.approval_status === 'APPROVED' ? "success" : "warning"} variant="outlined" />
                     </Grid>
                 </Grid>
                 {isEditing && (
-                    <Box sx={{ mt: 2, display, gap: 2 }}>
+                    <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
                         <Button variant="contained" onClick={handleProfileUpdate} disabled={loadingProfile}>Save</Button>
-                        <Button variant="outlined" onClick={() => { setIsEditing(false); setProfileData({ name: user.name, phone); }}>Cancel</Button>
+                        <Button variant="outlined" onClick={() => { setIsEditing(false); setProfileData({ name: user.name, phone: user.phone || "" }); }}>Cancel</Button>
                     </Box>
                 )}
             </Paper>
@@ -169,19 +169,19 @@ export const ProfilePage = () => {
                         <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 fullWidth type="password" label="Current Password"
-                                value={passData.current} onChange={(e) => setPassData({ ...passData, current)}
+                                value={passData.current} onChange={(e) => setPassData({ ...passData, current: e.target.value })}
                             />
                         </Grid>
                         <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 fullWidth type="password" label="New Password"
-                                value={passData.new} onChange={(e) => setPassData({ ...passData, new)}
+                                value={passData.new} onChange={(e) => setPassData({ ...passData, new: e.target.value })}
                             />
                         </Grid>
                         <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 fullWidth type="password" label="Confirm Password"
-                                value={passData.confirm} onChange={(e) => setPassData({ ...passData, confirm)}
+                                value={passData.confirm} onChange={(e) => setPassData({ ...passData, confirm: e.target.value })}
                             />
                         </Grid>
                     </Grid>
@@ -202,7 +202,7 @@ export const ProfilePage = () => {
             {isApproved && user.role !== ROLES.ADMIN && (
                 <Paper sx={{ p: 3, mb: 3 }}>
                     <Typography variant="h6" gutterBottom>Role Change Request</Typography>
-                    <Box sx={{ display: 'flex', gap, alignItems, mb: 3 }}>
+                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 3 }}>
                         <FormControl sx={{ minWidth: 200 }}>
                             <InputLabel>Request New Role</InputLabel>
                             <Select

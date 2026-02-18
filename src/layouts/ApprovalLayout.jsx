@@ -13,7 +13,7 @@ export const ApprovalLayout = () => {
     };
 
     return (
-        <Box sx={{ minHeight: "100vh", bgcolor, display, flexDirection: "column" }}>
+        <Box sx={{ minHeight: "100vh", bgcolor: 'background.default', display: 'flex', flexDirection: "column" }}>
             <AppBar position="static" color="default" elevation={1}>
                 <Toolbar>
                     <SchoolIcon color="primary" sx={{ mr: 1 }} />
@@ -26,7 +26,7 @@ export const ApprovalLayout = () => {
                 </Toolbar>
             </AppBar>
 
-            <Container maxWidth="sm" sx={{ mt: 8, flexGrow, display, flexDirection, alignItems: "center" }}>
+            <Container maxWidth="sm" sx={{ mt: 8, flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: "center" }}>
                 <Outlet />
             </Container>
         </Box>

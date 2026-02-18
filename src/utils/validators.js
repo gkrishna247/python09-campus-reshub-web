@@ -1,5 +1,5 @@
 
-export function validatePassword(password): PasswordChecks {
+export function validatePassword(password) {
     return {
         hasMinLength: password.length >= 8,
         hasUppercase: /[A-Z]/.test(password),
@@ -9,7 +9,7 @@ export function validatePassword(password): PasswordChecks {
     };
 }
 
-export function isPasswordValid(password): boolean {
+export function isPasswordValid(password) {
     const checks = validatePassword(password);
     return Object.values(checks).every((check) => check);
 }

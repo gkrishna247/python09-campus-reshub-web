@@ -81,8 +81,8 @@ export const StatisticsPage = () => {
                     <Paper sx={{ p: 3, height: '100%' }}>
                         <Typography variant="h6" gutterBottom>Bookings by Status</Typography>
                         <Box sx={{ mt: 2 }}>
-                            {Object.entries(stats.bookings?.by_status || {}).map(([status, count]: [string, any]) => (
-                                <Box key={status} sx={{ display: 'flex', justifyContent: 'space-between', mb, p, bgcolor, borderRadius: 1 }}>
+                            {Object.entries(stats.bookings?.by_status || {}).map(([status, count]) => (
+                                <Box key={status} sx={{ display: 'flex', justifyContent: 'space-between', mb: 1, p: 1, bgcolor: 'background.default', borderRadius: 1 }}>
                                     <Typography>{status}</Typography>
                                     <Typography fontWeight="bold">{count}</Typography>
                                 </Box>
@@ -101,8 +101,8 @@ export const StatisticsPage = () => {
                                     <Typography variant="body2">Labs</Typography>
                                     <Typography variant="body2">{stats.utilization?.by_type[RESOURCE_TYPES.LAB] || 0} hrs</Typography>
                                 </Box>
-                                <Box sx={{ width: '100%', bgcolor, height, borderRadius: 1 }}>
-                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.LAB] || 0) / 10, 100)}%`, bgcolor, height: '100%', borderRadius: 1 }} />
+                                <Box sx={{ width: '100%', bgcolor: 'background.default', height: 8, borderRadius: 1 }}>
+                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.LAB] || 0) / 10, 100)}%`, bgcolor: 'primary.main', height: '100%', borderRadius: 1 }} />
                                 </Box>
                             </Box>
 
@@ -111,8 +111,8 @@ export const StatisticsPage = () => {
                                     <Typography variant="body2">Classrooms</Typography>
                                     <Typography variant="body2">{stats.utilization?.by_type[RESOURCE_TYPES.CLASSROOM] || 0} hrs</Typography>
                                 </Box>
-                                <Box sx={{ width: '100%', bgcolor, height, borderRadius: 1 }}>
-                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.CLASSROOM] || 0) / 10, 100)}%`, bgcolor, height: '100%', borderRadius: 1 }} />
+                                <Box sx={{ width: '100%', bgcolor: 'background.default', height: 8, borderRadius: 1 }}>
+                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.CLASSROOM] || 0) / 10, 100)}%`, bgcolor: 'secondary.main', height: '100%', borderRadius: 1 }} />
                                 </Box>
                             </Box>
 
@@ -121,8 +121,8 @@ export const StatisticsPage = () => {
                                     <Typography variant="body2">Event Halls</Typography>
                                     <Typography variant="body2">{stats.utilization?.by_type[RESOURCE_TYPES.EVENT_HALL] || 0} hrs</Typography>
                                 </Box>
-                                <Box sx={{ width: '100%', bgcolor, height, borderRadius: 1 }}>
-                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.EVENT_HALL] || 0) / 10, 100)}%`, bgcolor, height: '100%', borderRadius: 1 }} />
+                                <Box sx={{ width: '100%', bgcolor: 'background.default', height: 8, borderRadius: 1 }}>
+                                    <Box sx={{ width: `${Math.min((stats.utilization?.by_type[RESOURCE_TYPES.EVENT_HALL] || 0) / 10, 100)}%`, bgcolor: 'info.main', height: '100%', borderRadius: 1 }} />
                                 </Box>
                             </Box>
                         </Box>

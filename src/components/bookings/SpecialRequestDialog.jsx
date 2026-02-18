@@ -71,7 +71,7 @@ export const SpecialRequestDialog = ({
             <DialogTitle>Special Request for {resource.name}</DialogTitle>
             <DialogContent>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Box sx={{ py: 2, display, flexDirection, gap: 3 }}>
+                    <Box sx={{ py: 2, display: 'flex', flexDirection: 'column', gap: 3 }}>
                         <DateTimePicker
                             label="Start Time"
                             value={startTime}

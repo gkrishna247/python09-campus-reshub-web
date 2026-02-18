@@ -14,7 +14,7 @@ export const AuditLogPage = () => {
     const fetchLogs = async () => {
         setLoading(true);
         try {
-            const res = await auditService.getAuditLogs({ page: page + 1, search);
+            const res = await auditService.getAuditLogs({ page: page + 1, search: search || undefined });
             setLogs(res.data.results);
             setTotalCount(res.data.count);
         } catch (error) {

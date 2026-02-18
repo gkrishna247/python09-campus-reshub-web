@@ -96,7 +96,7 @@ export const CalendarOverridePage = () => {
 
             <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
                 <DialogTitle>Add Calendar Override</DialogTitle>
-                <DialogContent sx={{ pt: 1, display, flexDirection, gap, minWidth: 300 }}>
+                <DialogContent sx={{ pt: 1, display: 'flex', flexDirection: 'column', gap: 1, minWidth: 300 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             label="Date"

@@ -8,7 +8,9 @@ import { SnackbarProvider } from "./store/SnackbarContext";
 import { useThemeMode } from "./hooks/useThemeMode";
 import { lightTheme, darkTheme } from "./theme";
 
+console.log("App module executing");
 function App() {
+  console.log("App component rendering");
   const { mode } = useThemeMode();
   const theme = mode === "light" ? lightTheme : darkTheme;
 

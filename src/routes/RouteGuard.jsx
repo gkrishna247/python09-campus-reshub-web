@@ -9,7 +9,7 @@ export const RouteGuard = ({ requireApproved = true }) => {
 
     if (isLoading) {
         return (
-            <Box sx={{ display: "flex", justifyContent, alignItems, height: "100vh" }}>
+            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', height: "100vh" }}>
                 <CircularProgress />
             </Box>
         );

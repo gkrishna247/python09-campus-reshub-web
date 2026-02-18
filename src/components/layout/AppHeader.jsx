@@ -35,7 +35,7 @@ export const AppHeader = ({ onMenuClick }) => {
     };
 
     return (
-        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor, color: "text.primary" }} elevation={1}>
+        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: 'background.default', color: "text.primary" }} elevation={1}>
             <Toolbar>
                 {isMobile && (
                     <IconButton color="inherit" edge="start" onClick={onMenuClick} sx={{ mr: 2 }}>
@@ -48,12 +48,12 @@ export const AppHeader = ({ onMenuClick }) => {
                     Campus ResHub
                 </Typography>
 
-                <Box sx={{ display: 'flex', alignItems, gap: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <ThemeToggle />
                     <NotificationBell />
 
-                    <Box sx={{ display: 'flex', alignItems, ml, cursor: 'pointer' }} onClick={handleMenuOpen}>
-                        <Avatar sx={{ width: 32, height, bgcolor, fontSize: '1rem' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', ml, cursor: 'pointer' }} onClick={handleMenuOpen}>
+                        <Avatar sx={{ width: 32, height, bgcolor: 'background.default', fontSize: '1rem' }}>
                             {user?.name?.charAt(0).toUpperCase()}
                         </Avatar>
                         <Typography variant="body2" sx={{ ml: 1, display: { xs: 'none', sm: 'block' } }} fontWeight="medium">

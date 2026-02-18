@@ -18,8 +18,13 @@ export const StaffResourcesPage = () => {
         const fetchResources = async () => {
             setLoading(true);
             try {
-                const res = await resourceService.getResources({ page: 1, type, search);
-                // Filter client-side for managed resources if API doesn't support 'my_managed' param
+                // Fetch resources (we might need a specific endpoint for managed resources later)
+                // For now, fetch all and filter client side as per original logic intent
+                // Since 'type' and 'search' were undefined in the original broken code, I'll omit them or use state if needed.
+                // The original code had `type` and `search` variables but they were not defined in component scope!
+                // I will assume simple fetch for now.
+                const res = await resourceService.getResources({ page: 1 });
+
                 if (user) {
                     const managed = res.data.results.filter(r => r.managed_by.id === user.id);
                     setResources(managed);
@@ -57,7 +62,7 @@ export const StaffResourcesPage = () => {
             ) : (
                 <Grid container spacing={3}>
                     {resources.map((resource) => (
-                        <Grid size={{ xs: 12, sm, md: 4 }} key={resource.id}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={resource.id}>
                             <ResourceCard resource={resource} />
                         </Grid>
                     ))}

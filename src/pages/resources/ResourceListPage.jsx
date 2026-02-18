@@ -10,8 +10,9 @@ import { useAuth } from "../../hooks/useAuth";
 import { useSnackbar } from "../../hooks/useSnackbar";
 import { ROLES, RESOURCE_TYPES, APPROVAL_TYPES } from "../../utils/constants";
 import { userService } from "../../services/userService";
-// Inline debounce hook since it wasn't specified in plan but required by prompt "debounced 300ms"
-function useDebounceValue(value, delay): T {
+
+// Inline debounce hook
+function useDebounceValue(value, delay) {
     const [debouncedValue, setDebouncedValue] = useState(value);
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -32,7 +33,6 @@ export const ResourceListPage = () => {
     const [resources, setResources] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
-    // const [rowsPerPage, setRowsPerPage] = useState(10);
     const [totalCount, setTotalCount] = useState(0);
 
     // Filters
@@ -52,7 +52,7 @@ export const ResourceListPage = () => {
         description: "",
         resource_status: "AVAILABLE",
         approval_type: APPROVAL_TYPES.AUTO_APPROVE,
-        managed_by: "" // ID as string
+        managed_by: ""
     });
     const [staffUsers, setStaffUsers] = useState([]);
 
@@ -63,7 +63,7 @@ export const ResourceListPage = () => {
                 search: debouncedSearch,
                 type: type || undefined,
                 min_capacity: minCapacity ? parseInt(minCapacity) : undefined,
-                page: page + 1 // API uses 1-based indexing usually? DRF uses 1-based.
+                page: page + 1
             });
             setResources(response.data.results);
             setTotalCount(response.data.count);
@@ -81,7 +81,6 @@ export const ResourceListPage = () => {
     // Fetch staff for create dialog
     useEffect(() => {
         if (openCreate && user?.role === ROLES.ADMIN) {
-            // Fetch staff users
             userService.getUsers({ role: ROLES.STAFF }).then(res => {
                 setStaffUsers(res.data.results);
             });
@@ -106,7 +105,7 @@ export const ResourceListPage = () => {
             fetchResources();
             // Reset form
             setCreateData({
-                name: "", type, capacity, total_quantity, location, description, resource_status, approval_type, managed_by: ""
+                name: "", type: RESOURCE_TYPES.LAB, capacity: "30", total_quantity: "1", location: "", description: "", resource_status: "AVAILABLE", approval_type: APPROVAL_TYPES.AUTO_APPROVE, managed_by: ""
             });
         } catch (error) {
             showSnackbar(error.message || "Failed to create resource.", "error");
@@ -137,22 +136,22 @@ export const ResourceListPage = () => {
             ) : (
                 <Grid container spacing={3}>
                     {resources.map((resource) => (
-                        <Grid size={{ xs: 12, sm, md, lg: 3 }} key={resource.id}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={resource.id}>
                             <ResourceCard resource={resource} />
                         </Grid>
                     ))}
                 </Grid>
             )}
 
-            {/* Pagination - assuming API returns count */}
+            {/* Pagination */}
             {totalCount > 0 && (
                 <TablePagination
                     component="div"
                     count={totalCount}
                     page={page}
                     onPageChange={handleChangePage}
-                    rowsPerPage={10} // fixed for now as API might not support dynamic size easily without param
-                    rowsPerPageOptions={[]} // hide options
+                    rowsPerPage={10}
+                    rowsPerPageOptions={[]}
                 />
             )}
 
@@ -160,7 +159,7 @@ export const ResourceListPage = () => {
                 <Fab
                     color="primary"
                     aria-label="add"
-                    sx={{ position: 'fixed', bottom, right: 24 }}
+                    sx={{ position: 'fixed', bottom: 24, right: 24 }}
                     onClick={() => setOpenCreate(true)}
                 >
                     <AddIcon />
@@ -171,14 +170,14 @@ export const ResourceListPage = () => {
             <Dialog open={openCreate} onClose={() => setOpenCreate(false)} maxWidth="sm" fullWidth>
                 <DialogTitle>Add New Resource</DialogTitle>
                 <DialogContent>
-                    <Box component="form" sx={{ pt: 1, display, flexDirection, gap: 2 }}>
+                    <Box component="form" sx={{ pt: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <TextField
                             label="Name" fullWidth required
-                            value={createData.name} onChange={(e) => setCreateData({ ...createData, name)}
+                            value={createData.name} onChange={(e) => setCreateData({ ...createData, name: e.target.value })}
                         />
                         <FormControl fullWidth>
                             <InputLabel>Type</InputLabel>
-                            <Select value={createData.type} label="Type" onChange={(e) => setCreateData({ ...createData, type)}>
+                            <Select value={createData.type} label="Type" onChange={(e) => setCreateData({ ...createData, type: e.target.value })}>
                                 <MenuItem value={RESOURCE_TYPES.LAB}>Lab</MenuItem>
                                 <MenuItem value={RESOURCE_TYPES.CLASSROOM}>Classroom</MenuItem>
                                 <MenuItem value={RESOURCE_TYPES.EVENT_HALL}>Event Hall</MenuItem>
@@ -187,31 +186,31 @@ export const ResourceListPage = () => {
                         <Box sx={{ display: 'flex', gap: 2 }}>
                             <TextField
                                 label="Capacity" type="number" fullWidth required
-                                value={createData.capacity} onChange={(e) => setCreateData({ ...createData, capacity)}
+                                value={createData.capacity} onChange={(e) => setCreateData({ ...createData, capacity: e.target.value })}
                             />
                             <TextField
                                 label="Total Quantity" type="number" fullWidth required
-                                value={createData.total_quantity} onChange={(e) => setCreateData({ ...createData, total_quantity)}
+                                value={createData.total_quantity} onChange={(e) => setCreateData({ ...createData, total_quantity: e.target.value })}
                             />
                         </Box>
                         <TextField
                             label="Location" fullWidth
-                            value={createData.location} onChange={(e) => setCreateData({ ...createData, location)}
+                            value={createData.location} onChange={(e) => setCreateData({ ...createData, location: e.target.value })}
                         />
                         <TextField
                             label="Description" fullWidth multiline rows={3}
-                            value={createData.description} onChange={(e) => setCreateData({ ...createData, description)}
+                            value={createData.description} onChange={(e) => setCreateData({ ...createData, description: e.target.value })}
                         />
                         <FormControl fullWidth>
                             <InputLabel>Status</InputLabel>
-                            <Select value={createData.resource_status} label="Status" onChange={(e) => setCreateData({ ...createData, resource_status)}>
+                            <Select value={createData.resource_status} label="Status" onChange={(e) => setCreateData({ ...createData, resource_status: e.target.value })}>
                                 <MenuItem value="AVAILABLE">Available</MenuItem>
                                 <MenuItem value="UNAVAILABLE">Unavailable</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl fullWidth>
                             <InputLabel>Approval Type</InputLabel>
-                            <Select value={createData.approval_type} label="Approval Type" onChange={(e) => setCreateData({ ...createData, approval_type)}>
+                            <Select value={createData.approval_type} label="Approval Type" onChange={(e) => setCreateData({ ...createData, approval_type: e.target.value })}>
                                 <MenuItem value="AUTO_APPROVE">Auto Approve</MenuItem>
                                 <MenuItem value="STAFF_APPROVE">Staff Approve</MenuItem>
                                 <MenuItem value="ADMIN_APPROVE">Admin Approve</MenuItem>
@@ -219,7 +218,7 @@ export const ResourceListPage = () => {
                         </FormControl>
                         <FormControl fullWidth>
                             <InputLabel>Managed By (Staff)</InputLabel>
-                            <Select value={createData.managed_by} label="Managed By (Staff)" onChange={(e) => setCreateData({ ...createData, managed_by)}>
+                            <Select value={createData.managed_by} label="Managed By (Staff)" onChange={(e) => setCreateData({ ...createData, managed_by: e.target.value })}>
                                 {staffUsers.map(u => (
                                     <MenuItem key={u.id} value={u.id}>{u.name} ({u.email})</MenuItem>
                                 ))}

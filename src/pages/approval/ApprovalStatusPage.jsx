@@ -56,7 +56,7 @@ export const ApprovalStatusPage = () => {
                         Please check back later.
                     </Typography>
 
-                    <Box sx={{ mt: 3, display, justifyContent, gap: 2 }}>
+                    <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center', gap: 2 }}>
                         <Button
                             variant="outlined"
                             startIcon={<RefreshIcon />}
@@ -114,7 +114,7 @@ export const ApprovalStatusPage = () => {
                         </Alert>
                     )}
 
-                    <Box sx={{ mt: 3, display, flexDirection, gap: 1 }}>
+                    <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
                         <Button variant="outlined" color="primary" onClick={handleLogout}>
                             Logout
                         </Button>
@@ -130,7 +130,7 @@ export const ApprovalStatusPage = () => {
     };
 
     return (
-        <Box sx={{ width: "100%", display, justifyContent: "center" }}>
+        <Box sx={{ width: "100%", display: 'flex', justifyContent: "center" }}>
             {renderContent()}
         </Box>
     );
