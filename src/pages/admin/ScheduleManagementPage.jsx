@@ -38,10 +38,10 @@ function ScheduleManagementPage() {
       setResource(resourceResponse?.data || resourceResponse)
       const scheduleRows = scheduleResponse?.data?.results || scheduleResponse?.data || scheduleResponse || []
       const normalized = dayOrder.map((day, index) => {
-        const existing = scheduleRows.find((item) => item.day_of_week === index + 1 || item.day_name === day)
+        const existing = scheduleRows.find((item) => item.day_of_week === index || item.day_name === day)
         return (
           existing || {
-            day_of_week: index + 1,
+            day_of_week: index,
             day_name: day,
             start_time: '08:00',
             end_time: '18:00',

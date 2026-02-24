@@ -119,7 +119,7 @@ function DashboardPage() {
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 3 }}><StatCard title="Total Users" value={data?.users?.total || 0} /></Grid>
           <Grid size={{ xs: 12, md: 3 }}><StatCard title="Total Resources" value={data?.resources?.total || 0} /></Grid>
-          <Grid size={{ xs: 12, md: 3 }}><StatCard title="Bookings This Week" value={data?.bookings?.total_in_range || 0} /></Grid>
+          <Grid size={{ xs: 12, md: 3 }}><StatCard title="Bookings This Week" value={data?.bookings?.total || 0} /></Grid>
           <Grid size={{ xs: 12, md: 3 }}><StatCard title="Pending Approvals" value={Object.values(data?.pending_approvals || {}).reduce((sum, count) => sum + count, 0)} /></Grid>
         </Grid>
       ) : null}

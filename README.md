@@ -1,64 +1,41 @@
-# Campus Resource Hub
+# 🏫 Campus Resource Hub (Frontend)
 
-A state-of-the-art, role-based resource management system for educational institutions. Built with React 19, Vite, and Material UI, this platform streamlines the process of booking, managing, and auditing campus resources like classrooms, labs, and equipment.
+> A state-of-the-art, role-based resource management system frontend built with React 19, Vite, and Material UI. Streamlines the booking, management, and auditing of campus resources.
 
-## 🚀 Vision & Purpose
-The Campus Resource Hub is designed to eliminate the friction in campus logistics. Whether you are a student looking for a study space, a faculty member scheduling a lab, or an administrator auditing resource usage, this platform provides a seamless, intuitive, and high-performance experience.
+## 🚀 Tech Stack & Architecture
 
-## ✨ Key Features
+- **Core Framework:** [React 19](https://react.dev/) & [Vite](https://vitejs.dev/)
+- **UI Toolkit:** [Material UI (MUI) v7](https://mui.com/)
+- **Routing Layer:** React Router v7 with RBAC-protected wrapper components (`ProtectedRoute`, `RoleRoute`)
+- **State Management:** React Context API (`AuthContext`, `NotificationContext`)
+- **API Client:** Axios utilizing centralized interceptors mapped cleanly to DRF
+- **Date Utilities:** [Day.js](https://day.js.org/)
+
+---
+
+## ✨ Features & Capabilities
 
 ### 👤 Role-Based Experience
-- **Students**: Browse available resources, check schedules, and book spaces for study or projects.
-- **Faculty**: Request specialized resources, manage bookings for classes, and approve student requests.
-- **Staff**: Manage resource inventory, handle maintenance requests, and oversee facility bookings.
-- **Administrators**: Full system control including user management, audit logs, global statistics, and calendar overrides.
+- **Students:** Browse resources, view live schedules, and submit bookings/special requests.
+- **Faculty:** Request entirely new resources and manage approvals for student booking requests.
+- **Staff:** Oversee resource inventories and facility limits globally across the application.
+- **Administrators:** Handle comprehensive user/role modifications, review audit logs, and manipulate calendar overrides.
 
-### 🛠️ Core Functionalities
-- **Dynamic Resource Discovery**: Search and filter resources by type, capacity, and availability.
-- **Advanced Booking System**: Real-time availability checks with support for conflict resolution.
-- **Administrative Suite**:
-  - **User Management**: Comprehensive control over user roles and access.
-  - **Audit Logs**: Transparent tracking of all system actions for security and accountability.
-  - **Live Statistics**: Data-driven insights into resource utilization.
-  - **Schedule Management**: Granular control over resource operating hours.
-- **Responsive Design**: Fully optimized for desktop and mobile devices.
-- **Dark Mode Support**: Elegant dark and light themes powered by Material UI.
+### 🛠️ Core UI Flow
+- **Dynamic Exploration:** Interactive search and filters to sort resources by type or capacity.
+- **Advanced Bookings:** Immediate availability validation interfacing deeply with backend transactional locks.
+- **Real-Time Contexts:** Hooks abstracting `NotificationContext` provide instant toast alerts across the UI state.
+- **Adaptive Aesthetics:** Built-in mobile responsiveness coupled with elegant Dark/Light toggle modes powered by MUI design tokens.
 
-## 💻 Tech Stack
-
-- **Frontend**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **UI Framework**: [Material UI (MUI) 7](https://mui.com/)
-- **Routing**: [React Router 7](https://reactrouter.com/)
-- **State Management**: React Context API
-- **API Client**: [Axios](https://axios-http.com/)
-- **Date Handling**: [Day.js](https://day.js.org/)
-
-## 🛠️ Project Structure
-
-```text
-src/
-├── assets/             # Static assets like images and icons
-├── components/         # Reusable UI components
-│   ├── common/         # Generic components (layout, snackbars, etc.)
-│   └── ...            # Feature-specific components
-├── hooks/              # Custom React hooks (auth, notifications, etc.)
-├── layouts/            # Page layouts (Dashboard, Auth, Approval)
-├── pages/              # Main page components organized by feature
-├── routes/             # Routing configuration and Guards
-├── services/           # API communication layer
-├── store/              # Context Providers for global state
-├── theme/              # MUI theme definitions (Light/Dark)
-└── utils/              # Helper functions and constants
-```
+---
 
 ## ⚙️ Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+- **Node.js**: v18 or higher
+- **Package Manager**: npm or yarn
 
-### Installation
+### Installation Steps
 
 1. **Clone the repository**
    ```bash
@@ -71,13 +48,13 @@ src/
    npm install
    ```
 
-3. **Environment Configuration**
-   Create a `.env` file in the root directory and add your API base URL:
+3. **Configure Environment variables**
+   Create a `.env` file in the root directory (or rename `.env.example`):
    ```env
    VITE_API_BASE_URL=http://localhost:8000/api/v1
    ```
 
-4. **Run Development Server**
+4. **Launch the Development Server**
    ```bash
    npm run dev
    ```
@@ -87,14 +64,28 @@ src/
    npm run build
    ```
 
-## 🚢 Deployment
-The project includes a `Procfile` for easy deployment to platforms like Scalingo or Heroku.
-- **Start Command**: `npm start` (serves the `dist` folder using `serve`)
+---
 
-## 🛡️ Security
-- **Role-Based Access Control (RBAC)**: Strict route guarding and UI-level permission checks.
-- **JWT Authentication**: Secure token-based authentication with automatic refresh logic.
-- **Protected Routes**: Middleware to ensure users only access authorized content.
+## 📂 Project Structure
+
+```text
+src/
+├── components/         # Reusable UI components segmented by feature (bookings, layout, admin)
+├── hooks/              # Custom React hooks abstraction layer (useAuth, useNotifications)
+├── pages/              # Main view components organized centrally by RBAC roles
+├── routes/             # Routing configuration and mapping tree
+├── services/           # Service layer segregating independent API entities
+├── store/              # Context Providers for global state retention
+├── theme/              # MUI theme parameter definitions
+└── utils/              # Helper functions and precise time formatting algorithms
+```
+
+---
+
+## 🛡️ Security & Integration
+- **Role-Based Access Control (RBAC):** Strict routing limits synchronize perfectly with decoded JWT claims.
+- **Automated Refreshes:** Granular Axios interceptors silently handle 401 token rotations.
+- **Audit Footprints:** Frontend UI components pass exact signatures down to the immutable backend audit models.
 
 ## 📄 License
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
