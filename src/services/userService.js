@@ -51,7 +51,7 @@ export async function rejectRegistration(id, rejection_reason) {
 }
 
 export async function getRoleChangeRequests(params) {
-  const response = await api.get('/role-changes/list/', { params })
+  const response = await api.get('/role-changes/', { params })
   return response.data
 }
 
