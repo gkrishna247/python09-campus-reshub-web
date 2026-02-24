@@ -46,7 +46,7 @@ export async function getResourceRequests(params) {
 }
 
 export async function createResourceRequest(data) {
-  const response = await api.post('/resource-requests/', data)
+  const response = await api.post('/resource-requests/create/', data)
   return response.data
 }
 

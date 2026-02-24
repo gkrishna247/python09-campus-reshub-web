@@ -16,7 +16,7 @@ export async function getPendingBookings(params) {
 }
 
 export async function createBooking(data) {
-  const response = await api.post('/bookings/', data)
+  const response = await api.post('/bookings/create/', data)
   return response.data
 }
 
